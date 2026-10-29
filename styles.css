@@ -1,0 +1,554 @@
+/* =========================================================
+   CSS Zen Garden — PERSONA 5 inspired theme
+   CSS only: keep the original index.html unchanged.
+   Save as styles.css (back up your current stylesheet first).
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --p5-red: #f20d2f;
+    --p5-red-dark: #b90020;
+    --p5-black: #090909;
+    --p5-charcoal: #171717;
+    --p5-paper: #f5f3ef;
+    --p5-white: #fffdf9;
+    --p5-gray: #b9b9b9;
+    --p5-ink: #111111;
+    --panel-shadow: 10px 10px 0 var(--p5-red);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--p5-black);
+}
+
+body {
+    margin: 0;
+    color: var(--p5-ink);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+    background-color: var(--p5-black);
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.13) 1px, transparent 1.5px),
+        linear-gradient(122deg, transparent 0 47%, rgba(242,13,47,.12) 47.2% 50%, transparent 50.2%),
+        linear-gradient(160deg, #111 0%, #050505 60%, #1b0005 100%);
+    background-size: 9px 9px, 100% 100%, 100% 100%;
+    background-attachment: fixed;
+}
+
+/* Dramatic red graphic slashes in the background */
+body::before {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    top: -16vh;
+    right: -11vw;
+    width: 34vw;
+    height: 135vh;
+    min-width: 220px;
+    transform: rotate(18deg);
+    background: var(--p5-red);
+    clip-path: polygon(35% 0, 100% 0, 65% 100%, 0 100%);
+    opacity: .92;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    left: -16vw;
+    bottom: -30vh;
+    width: 46vw;
+    height: 58vh;
+    transform: rotate(-14deg);
+    background: repeating-linear-gradient(
+        135deg,
+        rgba(242,13,47,.95) 0 3px,
+        transparent 3px 13px
+    );
+    clip-path: polygon(0 22%, 100% 0, 78% 100%, 0 100%);
+    opacity: .55;
+}
+
+/* Keep all page content above the decorative background */
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 44px));
+    margin: 0 auto;
+    padding: 44px 0 70px;
+}
+
+/* Main title block: bold, slanted, comic-book-like */
+.intro {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(30px, 6vw, 74px);
+    margin: 0 0 34px;
+    color: var(--p5-white);
+    background: var(--p5-red);
+    clip-path: polygon(0 0, 100% 0, 100% 87%, 94% 100%, 0 94%);
+    box-shadow: none;
+}
+
+.intro::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 10px;
+    border: 2px solid rgba(255,255,255,.85);
+    clip-path: polygon(0 0, 100% 0, 100% 87%, 94% 100%, 0 94%);
+    pointer-events: none;
+}
+
+.intro::after {
+    content: "PHANTOM THIEVES";
+    position: absolute;
+    right: clamp(18px, 4vw, 50px);
+    bottom: 15px;
+    font: 800 clamp(10px, 1.3vw, 15px)/1 'Barlow Condensed', sans-serif;
+    letter-spacing: .24em;
+    color: rgba(255,255,255,.88);
+    transform: skew(-12deg);
+}
+
+header h1,
+header h2,
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Anton', Impact, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: .015em;
+}
+
+header h1 {
+    margin: 0;
+    max-width: 900px;
+    font-size: clamp(3rem, 9vw, 7.8rem);
+    line-height: .86;
+    letter-spacing: -.025em;
+    text-shadow: 5px 5px 0 var(--p5-black);
+    transform: skew(-5deg) rotate(-1deg);
+    transform-origin: left center;
+}
+
+header h2 {
+    margin: 25px 0 0;
+    max-width: 800px;
+    font: 800 clamp(1rem, 2.1vw, 1.6rem)/1.2 'Barlow Condensed', sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--p5-black);
+    transform: skew(-8deg);
+}
+
+header h2 abbr {
+    text-decoration: none;
+    border: 0;
+}
+
+.intro .summary,
+.intro .preamble {
+    position: relative;
+}
+
+.summary {
+    max-width: 780px;
+    margin: 0 0 28px;
+    padding: 22px 26px;
+    color: var(--p5-white);
+    background: var(--p5-charcoal);
+    border-left: 8px solid var(--p5-red);
+    box-shadow: 7px 7px 0 rgba(0,0,0,.45);
+    font-size: .98rem;
+}
+
+.summary p {
+    margin: 0 0 10px;
+}
+
+.summary p:last-child {
+    margin-bottom: 0;
+}
+
+.summary a,
+.preamble a,
+.main a,
+.sidebar a {
+    color: inherit;
+    font-weight: 800;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color .18s ease, background-color .18s ease;
+}
+
+.summary a:hover,
+.preamble a:hover,
+.main a:hover {
+    color: var(--p5-red);
+}
+
+/* Intro copy becomes a clean white panel with an angular red marker */
+.preamble {
+    position: relative;
+    margin: 0 0 34px;
+    padding: clamp(24px, 4vw, 44px);
+    background: var(--p5-paper);
+    border: 3px solid var(--p5-white);
+    border-left: 12px solid var(--p5-red);
+    box-shadow: var(--panel-shadow);
+}
+
+.preamble h3 {
+    margin: 0 0 22px;
+    font-size: clamp(2rem, 4.6vw, 3.8rem);
+    color: var(--p5-red);
+    transform: skew(-4deg);
+}
+
+.preamble p {
+    max-width: 78ch;
+    color: var(--p5-ink);
+}
+
+/* Two-column content area */
+.main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    margin: 0 0 36px;
+}
+
+.main .explanation,
+.main .participation,
+.main .benefits,
+.main .requirements {
+    position: relative;
+    min-width: 0;
+    padding: clamp(24px, 3.5vw, 38px);
+    background: var(--p5-paper);
+    border-top: 9px solid var(--p5-red);
+    box-shadow: 8px 8px 0 rgba(0,0,0,.45);
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.main .explanation:hover,
+.main .participation:hover,
+.main .benefits:hover,
+.main .requirements:hover {
+    transform: translate(-4px, -4px) rotate(-.25deg);
+    box-shadow: 13px 13px 0 var(--p5-red);
+}
+
+.main h3 {
+    position: relative;
+    margin: 0 0 22px;
+    padding: 0 0 15px;
+    color: var(--p5-red);
+    font-size: clamp(1.8rem, 3.5vw, 2.9rem);
+    border-bottom: 2px solid var(--p5-ink);
+    transform: skew(-4deg);
+}
+
+.main h3::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    width: 70px;
+    height: 6px;
+    background: var(--p5-red);
+    transform: skew(-25deg);
+}
+
+.main p {
+    margin: 0 0 18px;
+}
+
+.main p:last-child {
+    margin-bottom: 0;
+}
+
+.main a {
+    color: var(--p5-red-dark);
+}
+
+.main a:hover {
+    color: var(--p5-black);
+    background: #ffe0e5;
+}
+
+/* Requirements often runs long, so let it span the full content width */
+.main .requirements {
+    grid-column: 1 / -1;
+    background:
+        linear-gradient(115deg, transparent 0 88%, rgba(242,13,47,.07) 88% 100%),
+        var(--p5-paper);
+}
+
+/* Footer links styled like compact red title cards */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 35px 0 0;
+    padding: 20px;
+    background: var(--p5-red);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 96% 100%, 0 100%);
+}
+
+footer a {
+    display: inline-block;
+    padding: 9px 15px;
+    color: var(--p5-white);
+    background: var(--p5-black);
+    border: 1px solid rgba(255,255,255,.7);
+    font: 700 .85rem/1.2 'Barlow Condensed', sans-serif;
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+}
+
+footer a:hover {
+    color: var(--p5-black);
+    background: var(--p5-white);
+    transform: translateY(-3px) skew(-4deg);
+}
+
+/* Sidebar: red-and-black Phantom Thief menu cards */
+.sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 24px;
+    margin: 0;
+    color: var(--p5-white);
+}
+
+.sidebar .wrapper {
+    min-width: 0;
+    padding: clamp(20px, 3vw, 30px);
+    background: rgba(15,15,15,.96);
+    border: 2px solid var(--p5-red);
+    box-shadow: 8px 8px 0 var(--p5-red);
+}
+
+.sidebar h3 {
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    color: var(--p5-red);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    border-bottom: 2px solid var(--p5-white);
+    transform: skew(-5deg);
+}
+
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 0 0 10px;
+}
+
+.sidebar li:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar li a {
+    display: block;
+    position: relative;
+    padding: 12px 14px 12px 19px;
+    color: var(--p5-white);
+    background: #242424;
+    border-left: 5px solid var(--p5-red);
+    font: 700 .98rem/1.35 'Barlow Condensed', sans-serif;
+    letter-spacing: .035em;
+    text-decoration: none;
+    transition: transform .18s ease, color .18s ease, background .18s ease;
+}
+
+.sidebar li a:hover {
+    color: var(--p5-black);
+    background: var(--p5-white);
+    transform: translateX(5px) skew(-2deg);
+}
+
+.sidebar li a abbr {
+    text-decoration: none;
+    border: 0;
+}
+
+.sidebar .design-selection li a {
+    padding-left: 19px;
+}
+
+.sidebar .design-selection li a .design-name {
+    display: block;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+}
+
+.sidebar .design-selection li a .designer-name {
+    display: block;
+    margin-top: 3px;
+    color: #c7c7c7;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: .76rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.sidebar .design-selection li a:hover .designer-name {
+    color: #444;
+}
+
+/* Lists and miscellaneous text */
+ul, ol {
+    padding-left: 1.35em;
+}
+
+li::marker {
+    color: var(--p5-red);
+}
+
+abbr {
+    text-decoration-color: var(--p5-red);
+    text-underline-offset: 3px;
+}
+
+::selection {
+    color: var(--p5-white);
+    background: var(--p5-red);
+}
+
+:focus-visible {
+    outline: 3px solid var(--p5-red);
+    outline-offset: 4px;
+}
+
+/* Tablet */
+@media (max-width: 850px) {
+    .page-wrapper {
+        width: min(100% - 30px, 720px);
+        padding-top: 24px;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .main .requirements {
+        grid-column: auto;
+    }
+
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    body::before {
+        right: -22vw;
+        width: 44vw;
+        opacity: .6;
+    }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    body {
+        font-size: 15px;
+        background-attachment: scroll;
+    }
+
+    .page-wrapper {
+        width: calc(100% - 22px);
+        padding-top: 11px;
+    }
+
+    .intro {
+        padding: 28px 22px 52px;
+        margin-bottom: 22px;
+    }
+
+    header h1 {
+        font-size: clamp(2.8rem, 16vw, 5rem);
+    }
+
+    header h2 {
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+
+    .summary {
+        padding: 18px;
+    }
+
+    .preamble {
+        padding: 22px 18px;
+        box-shadow: 6px 6px 0 var(--p5-red);
+    }
+
+    .main .explanation,
+    .main .participation,
+    .main .benefits,
+    .main .requirements {
+        padding: 22px 18px;
+        box-shadow: 5px 5px 0 rgba(0,0,0,.45);
+    }
+
+    .main .explanation:hover,
+    .main .participation:hover,
+    .main .benefits:hover,
+    .main .requirements:hover {
+        transform: none;
+        box-shadow: 6px 6px 0 var(--p5-red);
+    }
+
+    footer {
+        padding: 15px;
+        gap: 8px;
+    }
+
+    footer a {
+        font-size: .8rem;
+    }
+
+    body::before {
+        right: -42vw;
+        width: 70vw;
+        opacity: .35;
+    }
+
+    body::after {
+        opacity: .25;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
